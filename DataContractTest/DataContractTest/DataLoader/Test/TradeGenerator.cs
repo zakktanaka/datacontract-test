@@ -91,7 +91,7 @@ namespace DataContractTest.DataLoader.Test
                                 },
                             },
                         },
-                    }
+                    },
                 },
             };
         }

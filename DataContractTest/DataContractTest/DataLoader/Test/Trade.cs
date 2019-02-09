@@ -4,11 +4,11 @@ using System.Runtime.Serialization;
 
 namespace DataContractTest.DataLoader.Test
 {
-    enum PayReceiveType { PAY, RECEIVE }
-    enum DayCountType { DC_ACT_365, DC_ACT_360 }
+    public enum PayReceiveType { PAY, RECEIVE }
+    public enum DayCountType { DC_ACT_365, DC_ACT_360 }
 
     [DataContract]
-    class Trade
+    public class Trade
     {
         [DataMember(Name = "trade_code", IsRequired = true)]
         public string Code { get; set; }
@@ -17,7 +17,7 @@ namespace DataContractTest.DataLoader.Test
     }
 
     [DataContract]
-    class Leg
+    public class Leg
     {
         [DataMember(Name = "leg_no", IsRequired = true)]
         public int No { get; set; }
@@ -28,7 +28,7 @@ namespace DataContractTest.DataLoader.Test
     }
 
     [DataContract]
-    class CouponCashflow
+    public class CouponCashflow
     {
         [DataMember(Name = "no", IsRequired = true)]
         public uint No { get; set; }
@@ -48,8 +48,8 @@ namespace DataContractTest.DataLoader.Test
         public Dictionary<string, double> PayoffOptions { get; set; }
     }
 
-    [DataContract]
-    class FixedCouponCashflow : CouponCashflow
+    [DataContract(Name = nameof(CouponCashflow))]
+    public class FixedCouponCashflow : CouponCashflow
     {
         [DataMember(Name = "fixedrate", IsRequired = true)]
         public double FixedRate { get; set; }
@@ -57,8 +57,8 @@ namespace DataContractTest.DataLoader.Test
         public decimal PaymentAmount { get; set; }
     }
 
-    [DataContract]
-    class FloatingCouponCashflow : CouponCashflow
+    [DataContract(Name = nameof(CouponCashflow))]
+    public class FloatingCouponCashflow : CouponCashflow
     {
         [DataMember(Name = "fixingdate", IsRequired = true)]
         public DateTime FixingDate { get; set; }
@@ -77,7 +77,7 @@ namespace DataContractTest.DataLoader.Test
     }
 
     [DataContract]
-    struct CashRateIndex
+    public struct CashRateIndex
     {
         [DataMember(Name = "code", IsRequired = true)]
         public string Code { get; set; }
