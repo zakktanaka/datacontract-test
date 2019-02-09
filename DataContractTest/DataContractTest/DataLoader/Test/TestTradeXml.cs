@@ -23,7 +23,14 @@ namespace DataContractTest.DataLoader.Test
             {
                 serializer.WriteObject(xw, obj);
             }
-            Console.WriteLine(sw.GetStringBuilder().ToString());
+
+            Console.WriteLine(sw.ToString());
+
+            var rw = XmlReader.Create(new StringReader(sw.ToString()));
+            var trade = (Trade)serializer.ReadObject(rw);
+
+            Assert.AreEqual(obj.Legs[0].Cashflows[0].PaymentDate, trade.Legs[0].Cashflows[0].PaymentDate);
+            Assert.AreEqual(obj.Legs[1].Cashflows[1].StartDate, trade.Legs[1].Cashflows[1].StartDate);
         }
     }
 }
